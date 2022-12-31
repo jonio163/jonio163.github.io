@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+/* cssの場合はこれでコメントアウトできます */
+
+html {
+    font-size: 10px; /* px means "pixels": the base font size is now 10 pixels high  */
+    font-family: "Open Sans", sans-serif; /* this should be the rest of the output you got from Google fonts */
+    background-color: #00539F;
+}
+
+body {
+    width: 1200px;
+    margin: 0 auto;
+    background-color: #FF9500;
+    padding: 0 20px 20px 20px;
+     border: 1px solid black; 
+  }
+
+h1 {
+    font-size: 60px;
+    text-align: center;
+    margin: 0;
+    padding: 20px 0;
+    color: #00539F;   
+    text-shadow: 3px 3px 10px black; 
+    /* 最初はピクセル値で、影のテキストからの水平オフセット、どれだけ横に移動するかを設定します。
+    2 番目はピクセル値で、影のテキストから垂直オフセット、どれだけ下に移動するかを設定します。
+    3 番目のピクセル値で、影をぼかす半径を設定します。値が大きいほどぼやけた影を生成します。
+    4 番目の値は、影の基本色を設定します。 */
+}
+  
+p, li {
+    font-size: 16px;
+    line-height: 2;
+    letter-spacing: 1px;
+}
+
+img {
+    display: block;
+    width: 1000px;
+    margin: 0 auto;
+}
