@@ -78,3 +78,7 @@ window.onload =function(){
         output.innerHTML = insert;
     }
 }
+
+function renew(){
+    location.reload();
+}
