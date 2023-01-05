@@ -1,4 +1,11 @@
+let AnswerTable = [];
+let MyAnswer = [];
+let Marubatsu = [];
+
+let fight = 2; // debug value
+
 window.onload =function(){
+
     //出力場所を探す
     let output =document.getElementById("output");
     //CSVの指定
@@ -32,7 +39,7 @@ window.onload =function(){
     }
 
     function csvArr(dataArr){
-        let arr =[]; //2次元配列
+        let arr =[]; //2次元配列、実際に表示するファイル
         let j = 0;
         let dupli = []; //問題IDを管理
         let stuck = []; //csvから出力のための成形
@@ -58,25 +65,12 @@ window.onload =function(){
                 continue;
             }
             arr[i] = list[Randomer].split(',');
-            /*
-            for(j = 0; j < 6; j++){
-                stuck[j] = arr[i][j];
-                if(i < 5){
-                    stuck[0] = "対義語"
-                }else{
-                    stuck[0] = "類義語"
-                }
-            }
-            arr[i][0] = stuck[0];
-            arr[i][1] = stuck[1];
-            arr[i][2] = ' ';
-            arr[i][3] = stuck[5];
-            */
-            
             arr[i][0] = "(" + (i+1) +  ")";
-
-
         }
+
+        AnswerTable = JSON.parse(JSON.stringify(arr));
+
+        fight = fight + 2;
 
         for(j = 0; j < 10; j++){
             WordList[j] = arr[j][2];
@@ -112,8 +106,10 @@ window.onload =function(){
         delete arr[10];
 
         //console.log(arr);
-        htmlWrite(arr);//出力をtableに設定する
+        htmlWrite(arr);//出力をtableに設定する   
     }
+
+    //alert(AnswerTable[2]);
   
     //出力のタグを設定
     function htmlWrite(dataList){
@@ -129,21 +125,79 @@ window.onload =function(){
         //HTMLに出力
         output.innerHTML = insert;
     }
+}
 
 /*
-    function arrayShuffle(array) {
-        for(var k = (array.length - 1); 0 < k; k--){
-      
-          // 0〜(k+1)の範囲で値を取得
-          var r = Math.floor(Math.random() * (k + 1));
-      
-          // 要素の並び替えを実行
-          var tmp = array[k];
-          array[k] = array[r];
-          array[r] = tmp;
+var check = function()
+    {
+        var n = 0;
+
+        for(i = 0; i < document.frm.elements["inq[]"].length; i++)
+        {
+            // document.frm.elements["inq[]"][i].checked //チェックを判別
+            // document.frm.elements["inq[]"][i].value;  //値を取り出す
+
+            if(document.frm.elements["inq[]"][i].checked)
+            {
+                // IDを利用してラベルのテキストを取得
+                // document.getElementById("label_" + document.frm.elements["inq[]"][i].id).innerText
+                n++;
+            }
         }
-        return array;
+
+        if(n === 0)
+        {
+            alert("チェックが１つもありません！");
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
-*/
+    */
+
+    //採点パート//////////////////////////
+
+const submitButton = document.getElementById('submit-button');
    
-}
+const clickHandler = () => {
+    let score = 0;
+    for(i = 0; i < 10; i++){
+        const answerInput = document.getElementById(`answer-input${i+1}`);
+        MyAnswer[i] = answerInput.value;
+        if (AnswerTable[i][3] === answerInput.value) {
+            score++;
+            Marubatsu[i] = "○";
+        } else if (AnswerTable[i][4] === answerInput.value) {
+            score++;
+            Marubatsu[i] = "○";
+        }else{
+            Marubatsu[i] = "×";
+        }
+    }
+
+    if(score === 10){
+        window.alert('正解数は' + score + '/' + 10 + 'です！満点！');  
+    }else{
+        window.alert('正解数は' + score + '/' + 10 + 'です');
+    }
+    showAllAnswers();
+};
+      
+// ボタンクリックで正誤判定
+submitButton.addEventListener('click', () => {
+    clickHandler();
+});
+      
+const showAllAnswers = () => {
+    const container = document.getElementById('all-answers-container');
+    container.style.display = 'block';
+        
+    const tbody = document.getElementById('all-answers-tbody');
+    for (i=0; i < 10; i++) {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>(${i+1})${AnswerTable[i][1]}</td><td>${AnswerTable[i][5]}</td><td>${Marubatsu[i]}</td><td>${MyAnswer[i]}</td>`;
+        tbody.appendChild(row);
+    }
+};
