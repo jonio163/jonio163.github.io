@@ -2,19 +2,71 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>漢検準1級 対義語・類義語テスト</title>
-  <link rel="stylesheet">
+  <link rel="stylesheet", href = "css/styling.css">
 </head>
 <body>
+  <h1>漢検準1級 対義語・類義語テスト</h1>
   <div class="main">
-      <p>次の(1)〜(5)の対義語、(6)〜(10)の類義語を後の語群の中から選び、漢字で記せ。</br>
+      <p>次の(1)〜(5)の対義語、(6)〜(10)の類義語を後の語群の中から選び、漢字で記せ。<br>
          語群の中の語は一度だけ使うこと。</p>
       <table id="output">
       </table>
   </div>
-</body>
+  </br>
 
-<input type="button" value="このページを再読込します" onclick="window.location.reload();" />
+  解答欄<br>
+  (1)<input type="text" id="answer-input1"><span></span>
+  (6)<input type="text" id="answer-input6"><br>
+  <p class="mb1"></p>
+
+  (2)<input type="text" id="answer-input2"><span></span>
+  (7)<input type="text" id="answer-input7"><br>
+  <p class="mb1"></p>
+
+  (3)<input type="text" id="answer-input3"><span></span>
+  (8)<input type="text" id="answer-input8"><br>
+  <p class="mb1"></p>
+
+  (4)<input type="text" id="answer-input4"><span></span>
+  (9)<input type="text" id="answer-input9"><br>
+  <p class="mb1"></p>
+
+  (5)<input type="text" id="answer-input5"><span10></span10>
+  (10)<input type="text" id="answer-input10"><br>
+  <p class="mb1"></p>
+
+<button type="button" class="btn btn-primary" id="submit-button" onclick="disabled = true;">採点</button><span></span>
+<input type="button" value="問題を変更" onclick="window.location.reload();" />
+
+<!--
+<form name="frm" action="example" onsubmit="return check();">
+  <input type="checkbox" id="inq1" name="inq[]" value="1" />
+  <label id="label_inq1" for="inq1">1</label><br />
+  <input type="checkbox" id="inq2" name="inq[]" value="2" />
+  <label id="label_inq2" for="inq2">2</label><br />
+  <input type="checkbox" id="inq3" name="inq[]" value="3" />
+  <label id="label_inq3" for="inq3">3</label><br />
+  <input type="submit" value="submit" />
+</form>
+-->
+
+<div id="all-answers-container" style="display: none">
+  <h2>答え合わせ</h2>
+  <table class="table table-striped" id="Feedback">
+    <thead>
+      <tr>
+        <th>　問題</th>
+        <th>正答</th>
+        <th>正誤</th>
+        <th>あなたの答え</th>
+      </tr>
+    </thead>
+    <tbody id="all-answers-tbody">
+    </tbody>
+  </table>
+</div>
 <script src="scripts/csvrandomize.js"></script>
 </body>
 </html>
