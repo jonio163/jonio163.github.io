@@ -1,3 +1,25 @@
-#all-answers-container {
-    margin-top: 2em;
-  }
+@charset "utf-8";
+
+/* cssの場合はこれでコメントアウトできます */
+
+
+body {
+    margin: 40px;
+}
+
+#Feedback{
+  border-spacing: 20px;
+  text-align: left;
+}
+
+span {
+  margin: 15px;
+}
+
+span10{
+  margin: 10px;
+}
+
+.mb1{
+  margin-bottom: 1em;
+}
